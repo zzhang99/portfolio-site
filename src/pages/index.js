@@ -18,8 +18,6 @@ export default function Index({ data: { allPosts, site, blog } }) {
         <HeroPost
           title={heroPost.title}
           coverImage={heroPost.coverImage}
-          date={heroPost.date}
-          author={heroPost.author}
           slug={heroPost.slug}
           excerpt={heroPost.excerpt}
         />
@@ -46,25 +44,18 @@ export const query = graphql`
         title
         slug
         excerpt
-        date
         coverImage {
-          large: fluid(imgixParams: { fm: "jpg" }, sizes: "(max-width: 1500px) 100vw, 1500px") {
+          large: fluid(
+            imgixParams: { fm: "jpg" }
+            sizes: "(max-width: 1500px) 100vw, 1500px"
+          ) {
             ...GatsbyDatoCmsFluid
           }
-          small: fluid(imgixParams: { fm: "jpg" }, sizes: "(max-width: 760px) 100vw, (max-width: 1500px) 50vw, 700px") {
+          small: fluid(
+            imgixParams: { fm: "jpg" }
+            sizes: "(max-width: 760px) 100vw, (max-width: 1500px) 50vw, 700px"
+          ) {
             ...GatsbyDatoCmsFluid
-          }
-        }
-        author {
-          name
-          picture {
-            fixed(
-              width: 48
-              height: 48
-              imgixParams: { fm: "jpg", fit: "crop", sat: -100 }
-            ) {
-              ...GatsbyDatoCmsFixed
-            }
           }
         }
       }
