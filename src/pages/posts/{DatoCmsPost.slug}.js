@@ -17,8 +17,6 @@ export default function Post({ data: { site, post, morePosts } }) {
         <PostHeader
           title={post.title}
           coverImage={post.coverImage}
-          date={post.date}
-          author={post.author}
         />
         <PostBody content={post.content} />
       </article>
@@ -58,25 +56,12 @@ export const query = graphql`
           }
         }
       }
-      date
       coverImage {
         fluid(
           imgixParams: { fm: "jpg" }
           sizes: "(max-width: 1500px) 100vw, 1500px"
         ) {
           ...GatsbyDatoCmsFluid
-        }
-      }
-      author {
-        name
-        picture {
-          fixed(
-            width: 48
-            height: 48
-            imgixParams: { fm: "jpg", fit: "crop", sat: -100 }
-          ) {
-            ...GatsbyDatoCmsFixed
-          }
         }
       }
     }
@@ -89,25 +74,12 @@ export const query = graphql`
         title
         slug
         excerpt
-        date
         coverImage {
           small: fluid(
             imgixParams: { fm: "jpg" }
             sizes: "(max-width: 760px) 100vw, (max-width: 1500px) 50vw, 700px"
           ) {
             ...GatsbyDatoCmsFluid
-          }
-        }
-        author {
-          name
-          picture {
-            fixed(
-              width: 48
-              height: 48
-              imgixParams: { fm: "jpg", fit: "crop", sat: -100 }
-            ) {
-              ...GatsbyDatoCmsFixed
-            }
           }
         }
       }
